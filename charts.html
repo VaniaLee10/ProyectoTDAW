@@ -92,35 +92,12 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                       
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>                      
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                      
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -181,12 +158,6 @@
         <!-- ============================================================== -->
         <div class="page-wrapper">
             <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid"> <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
@@ -199,55 +170,9 @@
                         <h5 class="card-title">Entregas</h5>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
-                                 <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
-                                <button type="button" class="btn btn-success btn-lg text-white" data-toggle="modal" data-target="#Modal-n"> Nueva</button>
-                                <div class="modal fade" id="Modal-n" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Enviar una entrega</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"></h5>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 m-t-15"></label>
-                                                            <div class="col-md-9">
-                                                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                                    <option>Select</option>
-                                                                        <option value="No_Duplicidad">No duplicidad</option>
-                                                                        <option value="Primera_Entrega">Primera entrega</option>
-                                                                        <option value="Segunda_Entrega">Segunda entrega</option>
-                                                                        <option value="Tercera_Entrega">Tercera entrega</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3"></label>
-                                                            <div class="col-md-9">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                                                    <label class="custom-file-label" for="validatedCustomFile">Selecciona un archivo</label>
-                                                                    <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary">Guardar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
+                                <button type="button" class="btn btn-success btn-lg text-white" data-toggle="modal" data-target="#Modal_Nueva"> Nueva</button>
+                                
 
                                 <div class="border-top">
                                     <div class="card-body">
@@ -271,123 +196,14 @@
                                         </center></td>
                                         <td align="center"> 
 
-                                            <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal3"> Ver</button>
-
-                                            <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Entrega</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <img src="assets/images/background/img5.jpg" width="100% ">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal1">Edit </button>
+                                            <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>
+                                            <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>
                                             
-                                            <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                                                <div class="modal-dialog" role="document ">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Entrega</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true ">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"></h5>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 m-t-15"></label>
-                                                                        <div class="col-md-9">
-                                                                            <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                                                <option>Select</option>
-                                                                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                                    <option value="AK">Alaska</option>
-                                                                                    <option value="HI">Hawaii</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Pacific Time Zone">
-                                                                                    <option value="CA">California</option>
-                                                                                    <option value="NV">Nevada</option>
-                                                                                    <option value="OR">Oregon</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Mountain Time Zone">
-                                                                                    <option value="AZ">Arizona</option>
-                                                                                    <option value="CO">Colorado</option>
-                                                                                    <option value="ID">Idaho</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Central Time Zone">
-                                                                                    <option value="AL">Alabama</option>
-                                                                                    <option value="AR">Arkansas</option>
-                                                                                    <option value="IL">Illinois</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Eastern Time Zone">
-                                                                                    <option value="CT">Connecticut</option>
-                                                                                    <option value="DE">Delaware</option>
-                                                                                    <option value="FL">Florida</option>
-                                                                                </optgroup>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3"></label>
-                                                                        <div class="col-md-9">
-                                                                            <div class="custom-file">
-                                                                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                                                                <label class="custom-file-label" for="validatedCustomFile">Selecciona un archivo</label>
-                                                                                <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="border-top">
-                                                                    <div class="card-body">
-                                                                        <button type="button" class="btn btn-info">Actualizar</button>
-                                                                        <button type="button" class="btn btn-light">Cancelar</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
-                                             <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-axel" hrf="#">
-                                                Del
-                                            </button>
                                             
-                                            <div class="modal fade" id="Modal-axel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="Modal-axel">Eliminar</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>¿Quieres eliminar la entrega?</p>
-            
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                            <button type="button" class="btn btn-primary">Eliminar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
+                                            <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>
+                                            
+                                            
 
                                         </td>
                                     </tr>
@@ -397,128 +213,173 @@
                                             15 de enero 2022
                                         </center></td>
                                         <td align="center"> 
-                                           
-                                            <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal3"> Ver</button>
-
-                                            <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Entrega</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <img src="assets/images/background/img5.jpg" width="100% ">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal1" href="#">Edit </button>
-                                            
-                                            <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                                                <div class="modal-dialog" role="document ">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Actualizar entrega</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true ">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <!--EN AMBOS BOTONES DE ACTUALIZAR LAS PALABRAS "SELECCIONE UN ARCHIVO NO APARECEN CENTRADAS"-->
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"></h5>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 m-t-15"></label>
-                                                                        <div class="col-md-9">
-                                                                            <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                                                <option>Select</option>
-                                                                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                                    <option value="AK">Alaska</option>
-                                                                                    <option value="HI">Hawaii</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Pacific Time Zone">
-                                                                                    <option value="CA">California</option>
-                                                                                    <option value="NV">Nevada</option>
-                                                                                    <option value="OR">Oregon</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Mountain Time Zone">
-                                                                                    <option value="AZ">Arizona</option>
-                                                                                    <option value="CO">Colorado</option>
-                                                                                    <option value="ID">Idaho</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Central Time Zone">
-                                                                                    <option value="AL">Alabama</option>
-                                                                                    <option value="AR">Arkansas</option>
-                                                                                    <option value="IL">Illinois</option>
-                                                                                </optgroup>
-                                                                                <optgroup label="Eastern Time Zone">
-                                                                                    <option value="CT">Connecticut</option>
-                                                                                    <option value="DE">Delaware</option>
-                                                                                    <option value="FL">Florida</option>
-                                                                                </optgroup>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3"></label>
-                                                                        <div class="col-md-9">
-                                                                            <div class="custom-file">
-                                                                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                                                                <label class="custom-file-label" for="validatedCustomFile">Selecciona un archivo</label>
-                                                                                <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="border-top">
-                                                                    <div class="card-body">
-                                                                        <button type="button" class="btn btn-info">Actualizar</button>
-                                                                        <button type="button" class="btn btn-light">Cancelar</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
-                                             <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-axel" href="#">Del</button>
-                                            
-                                            <div class="modal fade" id="Modal-axel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="Modal-axel">Eliminar</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>¿Quieres eliminar la entrega?</p>
-            
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                            <button type="button" class="btn btn-primary">Eliminar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>   
-
+                                            <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>
+                                            <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>
+                                            <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
+
+
+<!-- ============================================================================================================================ -->
+                <!-- Modals -->
+<!-- ============================================================================================================================ -->
+                        
+
+                <!-- ============================================================== -->
+                <!-- Ventana de Nueva  -->
+                <!-- ============================================================== -->
+                        <div class="modal fade" id="Modal_Nueva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Enviar una entrega</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"></h5>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 m-t-15"></label>
+                                                    <div class="col-md-9">
+                                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                            <option>Select</option>
+                                                                <option value="No_Duplicidad">No duplicidad</option>
+                                                                <option value="Primera_Entrega">Primera entrega</option>
+                                                                <option value="Segunda_Entrega">Segunda entrega</option>
+                                                                <option value="Tercera_Entrega">Tercera entrega</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                                            <label class="custom-file-label" for="validatedCustomFile">Selecciona un archivo</label>
+                                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!-- ============================================================== -->
+                <!-- Ventana de Ver  -->
+                <!-- ============================================================== -->                        
+                        <div class="modal fade" id="Modal_Ver" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Entrega</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="assets/images/background/img5.jpg" width="100% ">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <!-- ============================================================== -->
+                <!-- Ventana de Actualizar  -->
+                <!-- ============================================================== -->
+                        <div class="modal fade" id="Modal_Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div class="modal-dialog" role="document ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Entrega</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"></h5>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 m-t-15"></label>
+                                                    <div class="col-md-9">
+                                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                            <option>Select</option>
+                                                                <option value="No_Duplicidad">No duplicidad</option>
+                                                                <option value="Primera_Entrega">Primera entrega</option>
+                                                                <option value="Segunda_Entrega">Segunda entrega</option>
+                                                                <option value="Tercera_Entrega">Tercera entrega</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                                            <label class="custom-file-label" for="validatedCustomFile">Selecciona un archivo</label>
+                                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top">
+                                                <div class="card-body">
+                                                    <button type="button" class="btn btn-info">Actualizar</button>
+                                                    <button type="button" class="btn btn-light">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <!-- ============================================================== -->
+                <!-- Ventana de Eliminar  -->
+                <!-- ============================================================== -->
+                        <div class="modal fade" id="Modal-Eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="Modal-Eliminar">Eliminar</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>¿Quieres eliminar la entrega?</p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!-- ============================================================================================================================ -->
+                <!-- End Modals -->
+<!-- ============================================================================================================================ -->
+
 
                     </div>
                 </div>
@@ -534,6 +395,8 @@
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
+
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
