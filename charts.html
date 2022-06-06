@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -160,7 +161,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid"> <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
+            <div class="container-fluid"> 
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
@@ -169,50 +170,37 @@
                     <div class="card-body">
                         <h5 class="card-title">Entregas</h5>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
-                                <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
+                            <table id="zero_config" class="table table-striped table-bordered" style="text-align: center;">
                                 <button type="button" class="btn btn-success btn-lg text-white" data-toggle="modal" data-target="#Modal_Nueva"> Nueva</button>
-                                
-
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="button" class="btn btn-dark btn-lg">PDF</button>
                                         <button type="button" class="btn btn-dark btn-lg">CVS</button> 
-                                        
                                     </div>
                                 </div>
                                 <thead>
                                     <tr>
-                                        <th><center> Entrega </center></th>
-                                        <th style="width:50%"><center>Fecha</center></th>
-                                        <th><center>Acciones </center></th>
+                                        <th>Entrega</th>
+                                        <th style="width:50%">Fecha</th>
+                                        <th>Acciones </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><center>Revisar Duplicidad </center></td>
-                                        <td><center>
+                                        <td>Revisar Duplicidad </td>
+                                        <td>
                                             10 de diciembre 2021
-                                        </center></td>
-                                        <td align="center"> 
-
+                                        </td>
+                                        <td > 
                                             <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>
                                             <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>
-                                            
-                                            
-                                            <!--PROBLEMAS CON BOTONES DE NUEVA Y ELIMINAR EN CADA ENTREGA, TODOS LOS BOTONES SOLO TOMAN EN CUENTA EL DE "NUEVA" NO SON INDEPENDIENTES-->
-                                            <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>
-                                            
-                                            
-
+                                            <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+JSONRespuesta.id+')" href="#">Del</button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td> <center>Primera Entrega </center></td>
-                                        <td><center>
-                                            15 de enero 2022
-                                        </center></td>
-                                        <td align="center"> 
+                                    <tr >
+                                        <td> Primera Entrega </td>
+                                        <td>15 de enero 2022 </td>
+                                        <td > 
                                             <button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>
                                             <button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>
                                             <button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>
@@ -248,7 +236,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 m-t-15"></label>
                                                     <div class="col-md-9">
-                                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="tipo_entrega" id="tipo_entrega">
                                                             <option>Select</option>
                                                                 <option value="No_Duplicidad">No duplicidad</option>
                                                                 <option value="Primera_Entrega">Primera entrega</option>
@@ -272,7 +260,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="actionCreate();">Guardar</button>
                                     </div>
                                 </div>
                             </div>
@@ -367,11 +355,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>¿Quieres eliminar la entrega?</p>
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary">Eliminar</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="actionDelete()">Eliminar</button>
                                     </div>
                                 </div>
                             </div>
@@ -437,6 +424,13 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+    <script>
+        $(function () {
+            actionRead();
+        });
+    </script>
+
+    <script src="propios/crud_entregas.js"></script>
 
 </body>
 
