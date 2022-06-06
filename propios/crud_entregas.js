@@ -50,6 +50,7 @@ function actionRead() {
       },
       success: function( respuesta ) {
         JSONRespuesta = JSON.parse(respuesta);
+        
         if (JSONRespuesta.estado == 1) {
           //Mostrar los registros (categorias) en la tabla
           tabla = $("#zero_config").DataTable();            
@@ -57,7 +58,7 @@ function actionRead() {
             let Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
             Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>';
-            tabla.row.add([entrega.nombre_entrega, fecha, Botones]).draw().node().id="renglon_"+entrega.id;
+            tabla.row.add([entrega.nombre_entrega,entrega.fecha_entrega,Botones]).draw().node().id="renglon_"+entrega.id;
           });
 
         }
