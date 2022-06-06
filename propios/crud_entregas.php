@@ -1,7 +1,7 @@
 <?php
     //Establecer la conexión con la base de datos
-    $conexion = 1;
-    //$conexion=mysqli_connect('localhost','root','','proyectof');
+    //$conexion = 1;
+    $conexion=mysqli_connect('localhost','root','','proyectof');
 
     //Verificar que se pudo conectar a la base de datos
     if(!$conexion){
@@ -42,7 +42,6 @@
         $Respuesta['estado']=1; 
         $Respuesta['mensaje']="El registro se guardo correctamente";
         $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
-        $Respuesta['fecha']="1 de Enero del 2000";
         $Respuesta['id']= random_int(1,10); 
         echo json_encode($Respuesta);
         
@@ -51,33 +50,31 @@
     function actionDeletePHP($conexion){
         $Respuesta['estado']=1; 
         $Respuesta['mensaje']="El registro se eliminó correctamente";
-        $Respuesta['id'] = $_POST['id'];
+        $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
         echo json_encode($Respuesta);
         
     }  
 
     function actionReadPHP($conexion){
-        //$QueryRead = "SELECT * FROM entregas";
-        //$ResultadoRead = mysqli_query($conexion, $QueryRead);
-        //$numeroRegistros = mysqli_num_rows($ResultadoRead);
-        //if ($numeroRegistros > 0 ) {
-        //    $Respuesta['estado']=1;
-        //    $Respuesta['mensaje']="Los registros se listan correctamente";
-        //    $Respuesta['entregas']=array();
-        //    while ($RenglonEntrega = mysqli_fetch_assoc($ResultadoRead)) {
-        //        $Entrega = array();
-        //        $Entrega['id'] = $RenglonEntrega['id'];
-        //        $Entrega['nombre_entrega'] = $RenglonEntrega['nombre_entrega'];
-        //        $Entrega['fecha'] = $RenglonEntrega['fecha'];
-        //        array_push($Respuesta['entregas'], $Entrega);
-        //    }
-        //}else {
-        //    $Respuesta['estado']=0;
-        //    $Respuesta['mensaje']="Lo siento, no hay registros";
-        //}
-
-        $Respuesta['estado']=0;
-        $Respuesta['mensaje']="Lo siento, no hay registros";
+        $QueryRead = "SELECT * FROM entrega";
+        $ResultadoRead = mysqli_query($conexion, $QueryRead);
+        $numeroRegistros = mysqli_num_rows($ResultadoRead);
+        if ($numeroRegistros > 0 ) {
+            $Respuesta['estado']=1;
+            $Respuesta['mensaje']="Los registros se listan correctamente";
+            $Respuesta['entregas']=array();
+            while ($RenglonEntrega = mysqli_fetch_assoc($ResultadoRead)) {
+                $Entrega = array();
+                $Entrega['id'] = $RenglonEntrega['id'];
+                $Entrega['nombre_entrega'] = $RenglonEntrega['nombre_entrega'];
+                $Entrega['fecha_entrega'] = $RenglonEntrega['fecha_entrega'];
+                $Entrega['boleta'] = $RenglonEntrega['boleta'];
+                array_push($Respuesta['entregas'], $Entrega);
+            }
+        }else {
+            $Respuesta['estado']=0;
+            $Respuesta['mensaje']="Lo siento, no hay registros";
+        }
 
         echo json_encode($Respuesta);
     }
