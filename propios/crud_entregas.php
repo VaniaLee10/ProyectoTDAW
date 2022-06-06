@@ -39,12 +39,23 @@
 
 
     function actionCreatePHP($conexion){
-        $Respuesta['estado']=1; 
-        $Respuesta['mensaje']="El registro se guardo correctamente";
-        $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
-        $Respuesta['id']= random_int(1,10); 
+        $entrega = $_POST['tipo_entrega'];
+        $QueryCreate = "INSERT INTO entrega (id, nombre_entrega, fecha_entrega, boleta)
+        VALUES (null, '".$entrega."', current_timestamp(), 2021679183)";
+
+        if (mysqli_query($conexion, $QueryCreate)) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="El registro se guardo correctamente";
+            $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
+            $Respuesta['fecha_entrega'] = date('Y-m-d');
+            $Respuesta['id']=mysqli_insert_id($conexion); 
+        }else{
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="Ocurrio un error desconocido";
+            $Respuesta['id'] = 0;
+        }
         echo json_encode($Respuesta);
-        
+        mysqli_close($conexion);
     }  
 
     function actionDeletePHP($conexion){
