@@ -23,7 +23,7 @@ function actionCreate() {
             Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
             Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+JSONRespuesta.id+')" href="#">Del</button>';
-            fecha = "00 de enero del 2000";
+            fecha = JSONRespuesta.fecha;
 
             tabla = $("#zero_config").DataTable();
             tabla.row.add([tipo_entrega, fecha, Botones]).draw().node().id="renglon_"+JSONRespuesta.id;
@@ -53,12 +53,11 @@ function actionRead() {
         if (JSONRespuesta.estado == 1) {
           //Mostrar los registros (categorias) en la tabla
           tabla = $("#zero_config").DataTable();            
-          JSONRespuesta.categorias.forEach(categoria => {    
-            let Descripcion = "";
+          JSONRespuesta.entregas.forEach(entrega => {    
             let Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
             Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>';
-            tabla.row.add([categoria.nombrecategoria, Descripcion, Botones]).draw().node();
+            tabla.row.add([entrega.nombre_entrega, fecha, Botones]).draw().node().id="renglon_"+entrega.id;
           });
 
         }
@@ -88,7 +87,7 @@ function actionDelete(id) {
     success: function( respuesta ) {
       JSONRespuesta = JSON.parse(respuesta);
       if (JSONRespuesta.estado == 1) {
-        let tabla = $("#example1").DataTable();
+        let tabla = $("#zero_config").DataTable();
         //Eliminar un renglon del DataTable
         tabla.row("#renglon_"+idEliminar).remove().draw();
       }else{

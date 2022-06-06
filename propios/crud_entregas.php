@@ -42,6 +42,7 @@
         $Respuesta['estado']=1; 
         $Respuesta['mensaje']="El registro se guardo correctamente";
         $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
+        $Respuesta['fecha']="1 de Enero del 2000";
         $Respuesta['id']= random_int(1,10); 
         echo json_encode($Respuesta);
         
@@ -50,7 +51,7 @@
     function actionDeletePHP($conexion){
         $Respuesta['estado']=1; 
         $Respuesta['mensaje']="El registro se eliminó correctamente";
-        $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
+        $Respuesta['id'] = $_POST['id'];
         echo json_encode($Respuesta);
         
     }  
