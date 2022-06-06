@@ -56,15 +56,31 @@
         }
         echo json_encode($Respuesta);
         mysqli_close($conexion);
-    }  
+    }
+    
+    
+    function actionUpdatePHP($conexion){
+
+    }
+
 
     function actionDeletePHP($conexion){
-        $Respuesta['estado']=1; 
-        $Respuesta['mensaje']="El registro se eliminó correctamente";
-        $Respuesta['tipo_entrega'] = $_POST['tipo_entrega'];
+        $id =$_POST['id'];
+        $QueryDelete = "DELETE FROM entrega WHERE id=".$id;
+
+        if (mysqli_query($conexion, $QueryDelete)) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="El registro se eliminó correctamente";
+            $Respuesta['id']=$id;
+        }else{
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="Ocurrio un error desconocido";
+            $Respuesta['id'] = 0;
+        }
         echo json_encode($Respuesta);
-        
+        mysqli_close($conexion);
     }  
+
 
     function actionReadPHP($conexion){
         $QueryRead = "SELECT * FROM entrega";
