@@ -23,13 +23,12 @@ function actionCreate() {
             Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
             Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+JSONRespuesta.id+')" href="#">Del</button>';
-            fecha = JSONRespuesta.fecha;
 
             tabla = $("#zero_config").DataTable();
-            tabla.row.add([tipo_entrega, fecha, Botones]).draw().node().id="renglon_"+JSONRespuesta.id;
-            alert("Tipo de entrega: "+JSONRespuesta.tipo_entrega);
-            alert("Id: "+JSONRespuesta.id);
-            alert("Estado del JSON: "+ JSONRespuesta.estado);            
+            tabla.row.add([tipo_entrega, JSONRespuesta.fecha_entrega, Botones]).draw().node().id="renglon_"+JSONRespuesta.id;
+            //alert("Tipo de entrega: "+JSONRespuesta.tipo_entrega);
+            //alert("Id: "+JSONRespuesta.id);
+            //alert("Estado del JSON: "+ JSONRespuesta.estado);            
           }
           //console.log(respuesta);
         },
@@ -41,7 +40,7 @@ function actionCreate() {
 
 
 function actionRead() {
-    alert("Funcionando");
+    //alert("Funcionando");
     $.ajax({
       method:"POST",
       url: "propios/crud_entregas.php",
@@ -63,7 +62,7 @@ function actionRead() {
 
         }
         //console.log(respuesta);
-        alert("Respuesta del servidor: "+respuesta);
+        //alert("Respuesta del servidor: "+respuesta);
       },
   });
 }
