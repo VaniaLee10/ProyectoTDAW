@@ -56,7 +56,7 @@ function actionRead() {
           JSONRespuesta.entregas.forEach(entrega => {    
             let Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
             Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
-            Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" href="#">Del</button>';
+            Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+entrega.id+')" href="#">Del</button>';
             tabla.row.add([entrega.nombre_entrega,entrega.fecha_entrega,Botones]).draw().node().id="renglon_"+entrega.id;
           });
 
@@ -76,7 +76,8 @@ function identificarEliminar(id) {
   idEliminar = id;
 }
 
-function actionDelete(id) {
+function actionDelete() {
+  
   $.ajax({
     method:"POST",
     url: "propios/crud_entregas.php",
@@ -85,7 +86,9 @@ function actionDelete(id) {
       accion : "delete"
     },
     success: function( respuesta ) {
+      alert(idEliminar);
       JSONRespuesta = JSON.parse(respuesta);
+      alert("Respuesta del servidor: "+respuesta);
       if (JSONRespuesta.estado == 1) {
         let tabla = $("#zero_config").DataTable();
         //Eliminar un renglon del DataTable
