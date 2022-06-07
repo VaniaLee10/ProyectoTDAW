@@ -57,11 +57,6 @@
         echo json_encode($Respuesta);
         mysqli_close($conexion);
     }
-    
-    
-    function actionUpdatePHP($conexion){
-
-    }
 
 
     function actionDeletePHP($conexion){
@@ -105,5 +100,50 @@
 
         echo json_encode($Respuesta);
     }
+
+
+    function actionReadByIdPHP($conexion){
+        $id = $_POST['id'];
+        $QueryReadById = "SELECT * FROM entrega WHERE id=".$id;
+        $ResultadoById = mysqli_query($conexion, $QueryReadById);
+        $numeroRegistrosById = mysqli_num_rows($ResultadoById);
+        if ($numeroRegistrosById == 1) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="Registro encontrado";
+
+            $RenglonEntregaById = mysqli_fetch_assoc($ResultadoById);
+
+            $Respuesta['id'] = $RenglonEntregaById['id'];
+            $Respuesta['nombre_entrega'] = $RenglonEntregaById['nombre_entrega'];
+
+        }else {
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="No se encuentra el registro";
+        }
+        echo json_encode($Respuesta);
+        mysqli_close($conexion);
+    }
+
+
+    function actionUpdatePHP($conexion){
+        $id = $_POST['id'];
+        $entrega = $_POST['nombre_entrega'];
+        $fecha = date('Y-m-d');
+        $QueryUpdate = "UPDATE entrega SET nombre_entrega ='".$entrega."' WHERE id=".$id;
+        mysqli_query($conexion, $QueryUpdate);
+        if (mysqli_affected_rows($conexion)==1) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="El registro se actualizo correctamente";
+            $Respuesta['nombre_entrega'] = $entrega;
+            $Respuesta['fecha_entrega'] = $fecha;
+        }else {
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="Ocurrio un error desconocido";
+        }
+        
+        echo json_encode($Respuesta);
+        mysqli_close($conexion);
+    }
+
 
 ?>

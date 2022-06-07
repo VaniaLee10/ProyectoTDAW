@@ -21,7 +21,7 @@ function actionCreate() {
 
           if (JSONRespuesta.estado == 1){
             Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
-            Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
+            Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar" onclick="identificarActualizar('+JSONRespuesta.id+')" href="#" >Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+JSONRespuesta.id+')" href="#">Del</button>';
 
             tabla = $("#zero_config").DataTable();
@@ -55,7 +55,7 @@ function actionRead() {
           tabla = $("#zero_config").DataTable();            
           JSONRespuesta.entregas.forEach(entrega => {    
             let Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
-            Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar">Edit </button>';
+            Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar" onclick="identificarActualizar('+entrega.id+')" href="#">Edit </button>';
             Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+entrega.id+')" href="#">Del</button>';
             tabla.row.add([entrega.nombre_entrega,entrega.fecha_entrega,Botones]).draw().node().id="renglon_"+entrega.id;
           });
@@ -67,8 +67,68 @@ function actionRead() {
   });
 }
 
+function identificarActualizar(id) {
+ $.ajax({
+    method:"POST",
+    url: "propios/crud_entregas.php",
+    data: {
+      id : id,
+      accion : "read_id"
+    },
+    success: function( respuesta ) {
+      JSONRespuesta = JSON.parse(respuesta);
+      if (JSONRespuesta.estado == 1) {
+        let nombre_entrega = document.getElementById("tipo_entrega_actualizar");
+        nombre_entrega.value = JSONRespuesta.nombre_entrega	;
+
+        $("#tipo_entrega_actualizar option[value='"+ nombre_entrega +"']").attr("selected",true);
+
+        idActualizar = JSONRespuesta.id;
+        
+      //alert(respuesta);
+      //console.log(respuesta);
+      
+    }
+    alert("Respuesta del servidor: "+respuesta);
+  }
+});
+}
+
+
 function actionUpdate() {
-    
+  let nombre_entrega = document.getElementById("tipo_entrega_actualizar").value;
+  
+  $.ajax({
+    method:"POST",
+    url: "propios/crud_entregas.php",
+    data: {
+      id : idActualizar,
+      nombre_entrega : nombre_entrega,
+      accion : "update"
+    },
+    success: function( respuesta ) {
+      JSONRespuesta = JSON.parse(respuesta);
+      
+      if (JSONRespuesta.estado == 1) {
+        let Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
+          Botones += '<button type="button" class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#Modal_Actualizar" onclick="identificarActualizar('+JSONRespuesta.id+')" href="#">Edit </button>';
+          Botones += '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal-Eliminar" onclick="identificarEliminar('+JSONRespuesta.id+')" href="#">Del</button>';
+
+        
+        let tabla = $("#zero_config").DataTable();
+        var temp = tabla.row("#renglon_"+idActualizar).data();
+        //Nombre
+        temp[0] = nombre_entrega;
+        //Descripcion
+        temp[1] = JSONRespuesta.fecha_entrega;
+        temp[2] = Botones;
+        tabla.row("#renglon_"+idActualizar).data(temp).draw();
+        //location.reload();
+      }
+      alert("Respuesta del servidor: "+respuesta);
+      //alert(respuesta);
+    },
+  });
 }
 
 function identificarEliminar(id) {
