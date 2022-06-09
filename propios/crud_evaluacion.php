@@ -65,40 +65,63 @@
 
 
     function actionReadByIdPHP($conexion){
-        //$id = $_POST['id'];
-        //$QueryReadById = "SELECT * FROM evaluacion WHERE id=".$id;
-        //$ResultadoById = mysqli_query($conexion, $QueryReadById);
-        //$numeroRegistrosById = mysqli_num_rows($ResultadoById);
-        //if ($numeroRegistrosById == 1) {
-        //    $Respuesta['estado']=1; 
-        //    $Respuesta['mensaje']="Registro encontrado";
-//
-        //    $RenglonEvaluacionById = mysqli_fetch_assoc($ResultadoById);
-//
-        //    $Respuesta['id'] = $RenglonEvaluacionById['id'];
-        //    //												def_prob_3	edo_arte_1	edo_arte_2	edo_arte_3	edo_arte_4	edo_arte_5	edo_arte_6	desc_proyec_1	desc_proyec_2	obj_gen_proy_1	obj_part_proy_1	obj_part_proy_2	justificacion_1	justificacion_2	justificacion_3	hipotesis_1	marco_teo_1	factibilidad_1	factibilidad_2	factibilidad_3	factibilidad_4	bibliografia_1	bibliografia_2	bibliografia_3	Operaciones sobre los resultados de la consulta
-        //    $Respuesta['portada_1'] = $RenglonEvaluacionById['portada_1'];
-        //    $Respuesta['portada_2'] = $RenglonEvaluacionById['portada_2'];
-        //    $Respuesta['portada_3'] = $RenglonEvaluacionById['portada_3'];
-        //    $Respuesta['portada_4'] = $RenglonEvaluacionById['portada_4'];
-        //    $Respuesta['portada_5'] = $RenglonEvaluacionById['portada_5'];
-        //    $Respuesta['indice'] = $RenglonEvaluacionById['indice'];
-        //    $Respuesta['resumen_1'] = $RenglonEvaluacionById['resumen_1'];
-        //    $Respuesta['resumen_2'] = $RenglonEvaluacionById['resumen_2'];
-        //    $Respuesta['resumen_3'] = $RenglonEvaluacionById['resumen_3'];
-        //    $Respuesta['resumen_4'] = $RenglonEvaluacionById['resumen_4'];
-        //    $Respuesta['def_prob_1'] = $RenglonEvaluacionById['def_prob_1'];
-        //    $Respuesta['def_prob_2'] = $RenglonEvaluacionById['def_prob_2'];
-        //    $Respuesta['portada_2'] = $RenglonEvaluacionById['portada_2'];
-        //    $Respuesta['portada_2'] = $RenglonEvaluacionById['portada_2'];
-//
-//
-        //}else {
-        //    $Respuesta['estado']=0; 
-        //    $Respuesta['mensaje']="No se encuentra el registro";
-        //}
-        //echo json_encode($Respuesta);
-        //mysqli_close($conexion);
+        $id = $_POST['id'];
+        $QueryReadById = "SELECT * FROM evaluacion, entrega WHERE evaluacion.id_entrega=".$id." AND entrega.id=".$id;
+        $ResultadoById = mysqli_query($conexion, $QueryReadById);
+        $numeroRegistrosById = mysqli_num_rows($ResultadoById);
+        if ($numeroRegistrosById >= 1) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="Registro encontrado";
+
+            $RenglonEvaluacionById = mysqli_fetch_assoc($ResultadoById);
+
+            $Respuesta['id_entrega'] = $RenglonEvaluacionById['id_entrega'];
+            $Respuesta['nombre_entrega'] = $RenglonEvaluacionById['nombre_entrega'];
+            $Respuesta['estadoe'] = $RenglonEvaluacionById['estado'];
+            $Respuesta['portada_1'] = $RenglonEvaluacionById['portada_1'];
+            $Respuesta['portada_2'] = $RenglonEvaluacionById['portada_2'];
+            $Respuesta['portada_3'] = $RenglonEvaluacionById['portada_3'];
+            $Respuesta['portada_4'] = $RenglonEvaluacionById['portada_4'];
+            $Respuesta['portada_5'] = $RenglonEvaluacionById['portada_5'];
+            $Respuesta['indice'] = $RenglonEvaluacionById['indice'];
+            $Respuesta['resumen_1'] = $RenglonEvaluacionById['resumen_1'];
+            $Respuesta['resumen_2'] = $RenglonEvaluacionById['resumen_2'];
+            $Respuesta['resumen_3'] = $RenglonEvaluacionById['resumen_3'];
+            $Respuesta['resumen_4'] = $RenglonEvaluacionById['resumen_4'];
+            $Respuesta['def_prob_1'] = $RenglonEvaluacionById['def_prob_1'];
+            $Respuesta['def_prob_2'] = $RenglonEvaluacionById['def_prob_2'];
+            $Respuesta['def_prob_3'] = $RenglonEvaluacionById['def_prob_3'];
+            $Respuesta['edo_arte_1'] = $RenglonEvaluacionById['edo_arte_1'];
+            $Respuesta['edo_arte_2'] = $RenglonEvaluacionById['edo_arte_2'];
+            $Respuesta['edo_arte_3'] = $RenglonEvaluacionById['edo_arte_3'];
+            $Respuesta['edo_arte_4'] = $RenglonEvaluacionById['edo_arte_4'];
+            $Respuesta['edo_arte_5'] = $RenglonEvaluacionById['edo_arte_5'];
+            $Respuesta['edo_arte_6'] = $RenglonEvaluacionById['edo_arte_6'];
+            $Respuesta['desc_proyec_1'] = $RenglonEvaluacionById['desc_proyec_1'];
+            $Respuesta['desc_proyec_2'] = $RenglonEvaluacionById['desc_proyec_2'];
+            $Respuesta['obj_gen_proy_1'] = $RenglonEvaluacionById['obj_gen_proy_1'];
+            $Respuesta['obj_part_proy_1'] = $RenglonEvaluacionById['obj_part_proy_1'];
+            $Respuesta['obj_part_proy_2'] = $RenglonEvaluacionById['obj_part_proy_2'];
+            $Respuesta['justificacion_1'] = $RenglonEvaluacionById['justificacion_1'];
+            $Respuesta['justificacion_2'] = $RenglonEvaluacionById['justificacion_2'];
+            $Respuesta['justificacion_3'] = $RenglonEvaluacionById['justificacion_3'];
+            $Respuesta['hipotesis_1'] = $RenglonEvaluacionById['hipotesis_1'];
+            $Respuesta['marco_teo_1'] = $RenglonEvaluacionById['marco_teo_1'];
+            $Respuesta['factibilidad_1'] = $RenglonEvaluacionById['factibilidad_1'];
+            $Respuesta['factibilidad_2'] = $RenglonEvaluacionById['factibilidad_2'];
+            $Respuesta['factibilidad_3'] = $RenglonEvaluacionById['factibilidad_3'];
+            $Respuesta['factibilidad_4'] = $RenglonEvaluacionById['factibilidad_4'];
+            $Respuesta['bibliografia_1'] = $RenglonEvaluacionById['bibliografia_1'];
+            $Respuesta['bibliografia_2'] = $RenglonEvaluacionById['bibliografia_2'];
+            $Respuesta['bibliografia_3'] = $RenglonEvaluacionById['bibliografia_3'];
+
+        }else {
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="No se encuentra el registro";
+        }
+        echo json_encode($Respuesta);
+        mysqli_close($conexion);
     }
+
 
 ?>

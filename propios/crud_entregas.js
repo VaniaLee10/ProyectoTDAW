@@ -4,6 +4,13 @@ let idActualizar;
 function actionCreate() {
     let tipo_entrega = document.getElementById("tipo_entrega").value;
     //alert(tipo_entrega);
+    var formData = new FormData();
+    var files = $('#archivo_subir')[0].files[0];
+    alert(files);
+    formData.append('file',files);
+    formData.append('tipo_entrega',tipo_entrega);
+    formData.append('accion','create');
+
     let Botones = "";
     let fecha;
 
@@ -11,13 +18,13 @@ function actionCreate() {
         method:"POST",
         url: "propios/crud_entregas.php",
         //JSON
-        data: {
-          tipo_entrega: tipo_entrega,
-          accion : "create"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         success: function( respuesta ) {
+          alert(respuesta);
           JSONRespuesta = JSON.parse(respuesta);
-          //alert(respuesta);
+          
 
           if (JSONRespuesta.estado == 1){
             Botones = '<button type="button" class="btn btn-info btn-lg text-white" data-toggle="modal" data-target="#Modal_Ver"> Ver</button>';
@@ -132,7 +139,7 @@ function actionUpdate() {
 }
 
 function identificarEliminar(id) {
-  alert("EL elemento a elimnar es "+id);
+  //alert("EL elemento a elimnar es "+id);
   idEliminar = id;
 }
 
@@ -146,7 +153,7 @@ function actionDelete() {
       accion : "delete"
     },
     success: function( respuesta ) {
-      alert(idEliminar);
+      //alert(idEliminar);
       JSONRespuesta = JSON.parse(respuesta);
       alert("Respuesta del servidor: "+respuesta);
       if (JSONRespuesta.estado == 1) {
