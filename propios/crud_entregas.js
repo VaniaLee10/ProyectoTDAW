@@ -154,8 +154,10 @@ function actionDelete() {
     },
     success: function( respuesta ) {
       //alert(idEliminar);
-      JSONRespuesta = JSON.parse(respuesta);
       alert("Respuesta del servidor: "+respuesta);
+      JSONRespuesta = JSON.parse(respuesta);
+      
+      //alert(JSONRespuesta.nombre_archivo)
       if (JSONRespuesta.estado == 1) {
         let tabla = $("#zero_config").DataTable();
         //Eliminar un renglon del DataTable

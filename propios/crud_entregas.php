@@ -67,18 +67,39 @@
 
 
     function actionDeletePHP($conexion){
-        $id =$_POST['id'];
-        $QueryDelete = "DELETE FROM entrega WHERE id=".$id;
+        $id = $_POST['id'];
 
-        if (mysqli_query($conexion, $QueryDelete)) {
-            $Respuesta['estado']=1; 
-            $Respuesta['mensaje']="El registro se elimino correctamente";
-            $Respuesta['id']=$id;
-        }else{
-            $Respuesta['estado']=0; 
-            $Respuesta['mensaje']="Ocurrio un error desconocido";
-            $Respuesta['id'] = 0;
+        $QueryReadEliminar = "SELECT * FROM entrega WHERE id=".$id;
+        $ResultadoReadEliminar = mysqli_query($conexion, $QueryReadEliminar);
+        $numeroRegistrosById = mysqli_num_rows($ResultadoReadEliminar);
+        if ($numeroRegistrosById == 1) {
+            $RenglonEntregaById = mysqli_fetch_assoc($ResultadoReadEliminar);
+
+            $Respuesta['id'] = $RenglonEntregaById['id'];
+            $Respuesta['nombre_entrega'] = $RenglonEntregaById['nombre_entrega'];
+            $Respuesta['nombre_archivo'] = $RenglonEntregaById['nombre_archivo'];
+            $file_pointer = "../pdfpropios/".$RenglonEntregaById['nombre_archivo'];
+
+            // Use unlink() function to delete a file
+            if (!unlink($file_pointer)) {
+                echo ("$file_pointer cannot be deleted due to an error");
+            }
+            else {
+                $QueryDelete = "DELETE FROM entrega WHERE id=".$id;
+
+                if (mysqli_query($conexion, $QueryDelete)) {
+                    $Respuesta['estado']=1; 
+                    $Respuesta['mensaje']="El registro se elimino correctamente";
+                    //$Respuesta['id']=$id;
+                }else{
+                    $Respuesta['estado']=0; 
+                    $Respuesta['mensaje']="Ocurrio un error desconocido";
+                    $Respuesta['id'] = 0;
+                }
+            }
         }
+
+        
         echo json_encode($Respuesta);
         mysqli_close($conexion);
     }  
