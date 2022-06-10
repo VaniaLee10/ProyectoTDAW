@@ -6,7 +6,7 @@ function actionCreate() {
     //alert(tipo_entrega);
     var formData = new FormData();
     var files = $('#archivo_subir')[0].files[0];
-    alert(files);
+    //alert(files);
     formData.append('file',files);
     formData.append('tipo_entrega',tipo_entrega);
     formData.append('accion','create');
@@ -22,7 +22,7 @@ function actionCreate() {
         contentType: false,
         processData: false,
         success: function( respuesta ) {
-          alert(respuesta);
+          //alert(respuesta);
           JSONRespuesta = JSON.parse(respuesta);
           
 
@@ -75,7 +75,7 @@ function actionRead() {
 }
 
 function identificarActualizar(id) {
- $.ajax({
+  $.ajax({
     method:"POST",
     url: "propios/crud_entregas.php",
     data: {
@@ -83,37 +83,52 @@ function identificarActualizar(id) {
       accion : "read_id"
     },
     success: function( respuesta ) {
+      //alert(respuesta);
       JSONRespuesta = JSON.parse(respuesta);
       if (JSONRespuesta.estado == 1) {
         let nombre_entrega = document.getElementById("tipo_entrega_actualizar");
         nombre_entrega.value = JSONRespuesta.nombre_entrega	;
 
+        if (JSONRespuesta.nombre_archivo){
+          let nombre_archivo = document.getElementById("archivo_nombre_actualizar").innerHTML = JSONRespuesta.nombre_archivo;
+        }else{
+          let nombre_archivo = document.getElementById("archivo_nombre_actualizar").innerHTML = 'Selecciona un archivo';
+        }
+
         $("#tipo_entrega_actualizar option[value='"+ nombre_entrega +"']").attr("selected",true);
 
         idActualizar = JSONRespuesta.id;
         
-      //alert(respuesta);
       //console.log(respuesta);
       
     }
-    alert("Respuesta del servidor: "+respuesta);
+    //alert("Respuesta del servidor: "+respuesta);
   }
 });
 }
 
 
 function actionUpdate() {
-  let nombre_entrega = document.getElementById("tipo_entrega_actualizar").value;
-  
+  let tipo_entrega = document.getElementById("tipo_entrega_actualizar").value;
+  //alert(tipo_entrega);
+  //let nombre_archivo = document.getElementById("archivo_nombre_actualizar").value;
+  //alert(nombre_archivo);
+  var formData = new FormData();
+  var files = $('#archivo_subir_actualizar')[0].files[0];
+  //alert(files);
+  formData.append('file',files);
+  formData.append('id',idActualizar);
+  formData.append('nombre_entrega',tipo_entrega);
+  formData.append('accion','update');
+
   $.ajax({
     method:"POST",
     url: "propios/crud_entregas.php",
-    data: {
-      id : idActualizar,
-      nombre_entrega : nombre_entrega,
-      accion : "update"
-    },
+    data: formData,
+    contentType: false,
+    processData: false,
     success: function( respuesta ) {
+      //alert(respuesta);
       JSONRespuesta = JSON.parse(respuesta);
       
       if (JSONRespuesta.estado == 1) {
@@ -125,14 +140,14 @@ function actionUpdate() {
         let tabla = $("#zero_config").DataTable();
         var temp = tabla.row("#renglon_"+idActualizar).data();
         //Nombre
-        temp[0] = nombre_entrega;
+        temp[0] = JSONRespuesta.nombre_entrega;
         //Descripcion
         temp[1] = JSONRespuesta.fecha_entrega;
         temp[2] = Botones;
         tabla.row("#renglon_"+idActualizar).data(temp).draw();
         //location.reload();
       }
-      alert("Respuesta del servidor: "+respuesta);
+      //alert("Respuesta del servidor: "+respuesta);
       //alert(respuesta);
     },
   });

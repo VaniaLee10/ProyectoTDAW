@@ -119,6 +119,7 @@
                 $Entrega['nombre_entrega'] = $RenglonEntrega['nombre_entrega'];
                 $Entrega['fecha_entrega'] = $RenglonEntrega['fecha_entrega'];
                 $Entrega['boleta'] = $RenglonEntrega['boleta'];
+                $Entrega['nombre_archivo'] = $RenglonEntrega['nombre_archivo'];
                 array_push($Respuesta['entregas'], $Entrega);
             }
         }else {
@@ -143,6 +144,8 @@
 
             $Respuesta['id'] = $RenglonEntregaById['id'];
             $Respuesta['nombre_entrega'] = $RenglonEntregaById['nombre_entrega'];
+            $Respuesta['nombre_archivo'] = $RenglonEntregaById['nombre_archivo'];
+
 
         }else {
             $Respuesta['estado']=0; 
@@ -157,16 +160,69 @@
         $id = $_POST['id'];
         $entrega = $_POST['nombre_entrega'];
         $fecha = date('Y-m-d');
-        $QueryUpdate = "UPDATE entrega SET nombre_entrega ='".$entrega."' WHERE id=".$id;
-        mysqli_query($conexion, $QueryUpdate);
-        if (mysqli_affected_rows($conexion)==1) {
-            $Respuesta['estado']=1; 
-            $Respuesta['mensaje']="El registro se actualizo correctamente";
-            $Respuesta['nombre_entrega'] = $entrega;
-            $Respuesta['fecha_entrega'] = $fecha;
-        }else {
-            $Respuesta['estado']=0; 
-            $Respuesta['mensaje']="Ocurrio un error desconocido";
+        //$archivos = $_FILES['file']['name'];
+
+        // Si se cambia de archivo
+        if (key_exists('file', $_FILES)) {
+
+            $QueryReadEliminar2 = "SELECT * FROM entrega WHERE id=".$id;
+            $ResultadoReadEliminar2 = mysqli_query($conexion, $QueryReadEliminar2);
+            $numeroRegistrosById = mysqli_num_rows($ResultadoReadEliminar2);
+            if ($numeroRegistrosById == 1) {
+                $RenglonEntregaById = mysqli_fetch_assoc($ResultadoReadEliminar2);
+
+                $Respuesta['id'] = $RenglonEntregaById['id'];
+                $Respuesta['nombre_archivo_anterior'] = $RenglonEntregaById['nombre_archivo'];
+                $file_pointer = "../pdfpropios/".$RenglonEntregaById['nombre_archivo'];
+
+                //Borra el archivo anterior
+                unlink($file_pointer);
+                //Subir de nuevo el archivo
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], "../pdfpropios/".$_FILES['file']['name'])) {    
+                    if(key_exists('nombre_entrega', $_POST)){
+                        $QueryUpdate = "UPDATE entrega SET nombre_entrega ='".$entrega."', nombre_archivo = '".$_FILES['file']['name']."' WHERE id=".$id;
+                        mysqli_query($conexion, $QueryUpdate);
+                        if (mysqli_affected_rows($conexion)>=1) {
+                            $Respuesta['estado']=1; 
+                            $Respuesta['mensaje']="El registro se actualizo correctamente";
+                            $Respuesta['nombre_entrega'] = $entrega;
+                            $Respuesta['fecha_entrega'] = $fecha;
+                            $Respuesta['nombre_archivo'] = $_FILES['file']['name'];
+                        }else {
+                            $Respuesta['estado']=0; 
+                            $Respuesta['mensaje']="No se pudo actualizar en la base de datos";
+                        }
+                    }else{
+                        $QueryUpdate = "UPDATE entrega SET nombre_archivo = '".$_FILES['file']['name']."' WHERE id=".$id;
+                        mysqli_query($conexion, $QueryUpdate);
+                        if (mysqli_affected_rows($conexion)>=1) {
+                            $Respuesta['estado']=1; 
+                            $Respuesta['mensaje']="El registro se actualizo correctamente";
+                            $Respuesta['nombre_entrega'] = $RenglonEntregaById['nombre_archivo'];
+                            $Respuesta['fecha_entrega'] = $fecha;
+                            $Respuesta['nombre_archivo'] = $_FILES['file']['name'];
+                        }else {
+                            $Respuesta['estado']=0; 
+                            $Respuesta['mensaje']="No se pudo actualizar en la base de datos";
+                        }
+                    }
+                }else {
+                    $Respuesta['estado']=0; 
+                    $Respuesta['mensaje']="No se pudo actualizar el archivo";
+                }
+            }
+        }else{//Si no se camnbia el archivo
+            $QueryUpdate = "UPDATE entrega SET nombre_entrega ='".$entrega."' WHERE id=".$id;
+            mysqli_query($conexion, $QueryUpdate);
+            if (mysqli_affected_rows($conexion)>=1) {
+                $Respuesta['estado']=1; 
+                $Respuesta['mensaje']="El registro se actualizo correctamente";
+                $Respuesta['nombre_entrega'] = $entrega;
+                $Respuesta['fecha_entrega'] = $fecha;
+            }else {
+                $Respuesta['estado']=0; 
+                $Respuesta['mensaje']="No se pudo actualizar en la base de datos";
+            }
         }
         
         echo json_encode($Respuesta);
