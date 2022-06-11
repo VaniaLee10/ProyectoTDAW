@@ -77,6 +77,7 @@
 
             $Respuesta['id_entrega'] = $RenglonEvaluacionById['id_entrega'];
             $Respuesta['nombre_entrega'] = $RenglonEvaluacionById['nombre_entrega'];
+            $Respuesta['nombre_archivo'] = $RenglonEvaluacionById['nombre_archivo'];
             $Respuesta['estadoe'] = $RenglonEvaluacionById['estado'];
             $Respuesta['portada_1'] = $RenglonEvaluacionById['portada_1'];
             $Respuesta['portada_2'] = $RenglonEvaluacionById['portada_2'];
@@ -114,6 +115,7 @@
             $Respuesta['bibliografia_1'] = $RenglonEvaluacionById['bibliografia_1'];
             $Respuesta['bibliografia_2'] = $RenglonEvaluacionById['bibliografia_2'];
             $Respuesta['bibliografia_3'] = $RenglonEvaluacionById['bibliografia_3'];
+            $Respuesta['observaciones'] = $RenglonEvaluacionById['observaciones'];
 
         }else {
             $Respuesta['estado']=0; 

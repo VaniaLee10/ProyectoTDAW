@@ -251,7 +251,7 @@
                 <!-- Ventana de Ver  -->
                 <!-- ============================================================== -->                        
                         <div class="modal fade" id="Modal_Ver" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Entrega</h5>
@@ -260,7 +260,9 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="assets/images/background/img5.jpg" width="100% ">
+                                        <iframe src="http://localhost/ProyectoTDAW/pdfpropios/" width="100%" height="550" id="pdf" name="pdf">
+                                            <p>Su navegador no es compatible con iframes</p>
+                                        </iframe>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -399,6 +401,9 @@
     <script src="assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
+    <!-- Toastr -->
+    <script src="assets/libs/toastr/build/toastr.min.js"></script>
+
     <script>
         /****************************************
          *       Basic Table                   *

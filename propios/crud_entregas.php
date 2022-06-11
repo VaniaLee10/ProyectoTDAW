@@ -32,6 +32,10 @@
             actionReadPHP($conexion);
             break;
         
+        case 'ver':
+            actionVerPHP($conexion);
+            break;
+        
         default:
             # code...
             break;
@@ -230,4 +234,25 @@
     }
 
 
+    function actionVerPHP($conexion){
+        $id = $_POST['id'];
+        $QueryReadById = "SELECT * FROM entrega WHERE id=".$id;
+        $ResultadoById = mysqli_query($conexion, $QueryReadById);
+        $numeroRegistrosById = mysqli_num_rows($ResultadoById);
+        if ($numeroRegistrosById == 1) {
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="Registro encontrado";
+
+            $RenglonEntregaById = mysqli_fetch_assoc($ResultadoById);
+
+            $Respuesta['id'] = $RenglonEntregaById['id'];
+            $Respuesta['nombre_entrega'] = $RenglonEntregaById['nombre_entrega'];
+            $Respuesta['nombre_archivo'] = $RenglonEntregaById['nombre_archivo'];
+        }else {
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="No se encuentra el registro";
+        }
+        echo json_encode($Respuesta);
+        mysqli_close($conexion);
+    }
 ?>

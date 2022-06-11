@@ -787,12 +787,22 @@ function identificarVer(id) {
               break;
           }
 
+          let observaciones = document.getElementById("observacion");
+          observaciones.value = JSONRespuesta.observaciones;
+          //alert(observaciones);
+
+          let iframe = document.getElementById('pdf_observaciones');
+          //alert(iframe);
+          iframe.src="http://localhost/ProyectoTDAW/pdfpropios/"+JSONRespuesta.nombre_archivo;
+
 
           idActualizar = JSONRespuesta.id;
+          //toastr.success(JSONRespuesta.mensaje);
+          //alert(JSONRespuesta.mensaje);
         }
         //alert(respuesta);
         //console.log(respuesta);
-        alert("Respuesta del servidor: "+respuesta);
+        //alert("Respuesta del servidor: "+respuesta);
       },
   });
   }
