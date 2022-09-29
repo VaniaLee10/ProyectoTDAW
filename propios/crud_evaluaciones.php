@@ -27,6 +27,10 @@
         case 'ver':
             actionVerPHP($conexion);
             break;
+
+        case 'delete':
+            actionVerPHP($conexion);
+            break;
         
         default:
             # code...
@@ -117,6 +121,27 @@
         echo json_encode($Respuesta);
         mysqli_close($conexion);
     }
+
+    function actionDeletePHP($conexion){
+        $id = $_POST['id'];
+        
+        //echo($nombre_revisor);
+
+        $QueryUpdate = "UPDATE proyecto SET revisor".$id." = NULL";
+        $ResultadoUpdate = mysqli_query($conexion, $QueryUpdate);
+        //$numeroRegistrosUpdated = mysqli_num_rows($ResultadoUpdate);
+        if($ResultadoUpdate){
+            $Respuesta['estado']=1; 
+            $Respuesta['mensaje']="Registro actualizado";
+        }else {
+            $Respuesta['estado']=0; 
+            $Respuesta['mensaje']="Registro no actualizado";
+        }
+            
+        
+        echo json_encode($Respuesta);
+        mysqli_close($conexion);
+    }  
 
 
     function actionVerPHP($conexion){

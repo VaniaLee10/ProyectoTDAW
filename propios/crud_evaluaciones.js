@@ -50,26 +50,31 @@ function identificarActualizar(id) {
       if (JSONRespuesta.estado == 1) {
 
         tabla = $("#tabla_revisores").DataTable();          
-        let Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2"> Eliminar </button>';
+        let Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(1)> Eliminar </button>';
         if(JSONRespuesta.revisor1!=null){
             tabla.row.add([JSONRespuesta.revisor1,Boton]).draw().node().id="renglon_1";
             numero_revisor=1;
+            Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(2)> Eliminar </button>';
         }
         if(JSONRespuesta.revisor2!=null){
             tabla.row.add([JSONRespuesta.revisor2,Boton]).draw().node().id="renglon_2";
             numero_revisor=2;
+            Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(3)> Eliminar </button>';
         }
         if(JSONRespuesta.revisor3!=null){
             tabla.row.add([JSONRespuesta.revisor3,Boton]).draw().node().id="renglon_3";
             numero_revisor=3;
+            Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(4)> Eliminar </button>';
         }
         if(JSONRespuesta.revisor4!=null){
             tabla.row.add([JSONRespuesta.revisor4,Boton]).draw().node().id="renglon_4";
             numero_revisor=4;
+            Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(5)> Eliminar </button>';
         }
         if(JSONRespuesta.revisor5!=null){
             tabla.row.add([JSONRespuesta.revisor5,Boton]).draw().node().id="renglon_5";
             numero_revisor=5;
+            Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar(6)> Eliminar </button>';
         }
 
         idActualizar = JSONRespuesta.id;
@@ -84,7 +89,6 @@ function identificarActualizar(id) {
 function agregarRevisor() {
   let nombre_revisor = document.getElementById("revisores").value;
   //alert(tipo_entrega);
-  //let nombre_archivo = document.getElementById("archivo_nombre_actualizar").value;
   //alert(nombre_revisor);
   //alert(idActualizar);
   //alert(numero_revisor);
@@ -105,6 +109,7 @@ function agregarRevisor() {
       JSONRespuesta = JSON.parse(respuesta);
       
       if (JSONRespuesta.estado == 1) {
+        Boton = '<button type="button" class="btn btn-danger btn-lg text-white" data-toggle="modal" data-target="#Modal2" onclick=identificarEliminar('+JSONRespuesta.numero_revisor+')> Eliminar </button>';
         alert(JSONRespuesta.mensaje);
         tabla = $("#tabla_revisores").DataTable();     
         tabla.row.add(nombre_revisor, Boton).draw().node().id="renglon_"+JSONRespuesta.numero_revisor;
@@ -119,12 +124,12 @@ function agregarRevisor() {
 }
 
 function identificarEliminar(id) {
-    //alert("EL elemento a elimnar es "+id);
+    alert("EL elemento a elimnar es "+id);
     idEliminar = id;
+    elimnarRevisor();
   }
 
 function elimnarRevisor(){
-
     $.ajax({
     method:"POST",
     url: "propios/crud_evaluaciones.php",
